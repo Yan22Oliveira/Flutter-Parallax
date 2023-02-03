@@ -15,11 +15,17 @@ class _HomePageState extends State<HomePage> {
   late ScrollController _scrollController;
 
   double _scrollOffset = 0.0;
+
   final double _layer1Speed = 0.5;
   final double _layer2Speed = 0.45;
   final double _layer3Speed = 0.42;
   final double _layer4Speed = 0.375;
-  final double _sunSpeed    = 0.25;
+  final double _sunSpeed    = 0.12;
+
+  final double _layerH1Speed = 0.1;
+  final double _layerH2Speed = 0.08;
+  final double _layerH3Speed = 0.075;
+  final double _layerH4Speed = 0.07;
 
   @override
   void initState() {
@@ -64,27 +70,30 @@ class _HomePageState extends State<HomePage> {
             ),
             Positioned(
               bottom: (_layer4Speed * _scrollOffset),
-              right: 0,
-              left: 0,
+              right: (_layerH4Speed * _scrollOffset * -1),
+              left: (_layerH4Speed * _scrollOffset * -1),
               child: SvgPicture.asset('assets/mountains-layer-4.svg'),
             ),
             Positioned(
               bottom: -20 + (_layer3Speed * _scrollOffset),
-              right: 0,
-              left: 0,
+              right: (_layerH3Speed * _scrollOffset * -1),
+              left: (_layerH3Speed * _scrollOffset * -1),
               child: SvgPicture.asset('assets/mountains-layer-2.svg'),
             ),
             Positioned(
               bottom: -20 + (_layer2Speed * _scrollOffset),
-              right: 0,
-              left: 0,
+              right: (_layerH2Speed * _scrollOffset * -1),
+              left: (_layerH2Speed * _scrollOffset * -1),
               child: SvgPicture.asset('assets/trees-layer-2.svg'),
             ),
             Positioned(
               bottom: -50 + (_layer1Speed * _scrollOffset),
-              right: 0,
-              left: 0,
-              child: SvgPicture.asset('assets/layer-1.svg'),
+              right: (_layerH1Speed * _scrollOffset * -1),
+              left: (_layerH1Speed * _scrollOffset * -1),
+              child: SvgPicture.asset(
+                'assets/layer-1.svg',
+                fit: BoxFit.fitWidth,
+              ),
             ),
             Positioned(
               top: height + (_layer1Speed * _scrollOffset *-1),
@@ -93,6 +102,16 @@ class _HomePageState extends State<HomePage> {
               height: height,
               child: Container(
                 color: Colors.black,
+                child: const Center(
+                  child: Text(
+                    'Parallax Flutter',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 32,
+                    ),
+                  ),
+                ),
               ),
             ),
             Positioned.fill(
